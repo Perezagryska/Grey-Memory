@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grey Memory</title>
+    <script src="https://pygame-web.github.io/archives/0.8/pygbag.js"></script>
+    <style>
+        body { margin: 0; background-color: black; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        canvas { width: 100vw; height: auto; max-height: 100vh; object-fit: contain; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <script>
+        // Запуск игры. pygbag ищет main.py автоматически
+        window.addEventListener('load', () => {
+            startPygbag('grey-memory', document.getElementById('canvas'));
+        });
+    </script>
+</body>
+</html>
