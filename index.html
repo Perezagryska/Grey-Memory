@@ -1,21 +1,34 @@
 <!doctype html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grey Memory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://pygame-web.github.io/archives/0.8/pygbag.js"></script>
     <style>
-        body { margin: 0; background-color: black; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-        canvas { width: 100vw; height: auto; max-height: 100vh; object-fit: contain; }
+        body { margin:0; background:#000; color:#fff; overflow:hidden; font-family:sans-serif; }
+        #status { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); }
     </style>
 </head>
 <body>
+    <div id="status">Загрузка разума...</div>
     <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+
+    <script type="application/python">
+# Этот блок пустой, он нужен просто чтобы активировать загрузчик
+    </script>
+
     <script>
-        // Запуск игры. pygbag ищет main.py автоматически
-        window.addEventListener('load', () => {
-            startPygbag('grey-memory', document.getElementById('canvas'));
+        window.addEventListener('load', async () => {
+            const status = document.getElementById('status');
+            try {
+                // Пытаемся запустить игру из текущей папки
+                await startPygbag('grey_memory', document.getElementById('canvas'));
+                status.style.display = 'none';
+            } catch (e) {
+                status.innerText = "Ошибка загрузки. Проверь main.py";
+                console.error(e);
+            }
         });
     </script>
 </body>
